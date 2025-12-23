@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Whimsical Invitation ✨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background: linear-gradient(135deg, #ffb6d5, #e6b7ff, #ffd6e8);
+      color: #4a235a;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* 🌟 Floating elements container */
+    .floaties {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .float {
+      position: absolute;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-10vh) rotate(360deg);
+      }
+    }
+
+    .slide {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.35);
+      padding: 45px 35px;
+      border-radius: 24px;
+      max-width: 720px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 30px;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff9acb, #ffc3e1);
+      color: #4a235a;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+
+    .bold {
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✨ FLOATING HEARTS + STARS + SPARKLES -->
+  <div class="floaties" id="floaties"></div>
+
+  <!-- SLIDE 1 -->
+  <div class="slide active" id="slide1">
+    <div class="card">
+      <h1>✨ You Are Invited! ✨</h1>
+      <h2>
+        Are you ready to get whisked away by a whimsical night of
+        manifestation and vision-building?
+      </h2>
+
+      <div class="buttons">
+        <button onclick="goToInvite()">Yes, I am in ✨</button>
+        <button onclick="showAnyway()">No, I am not interested</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1B -->
+  <div class="slide" id="slideAnyway">
+    <div class="card">
+      <div class="bold">YOU’RE COMING ANYWAY 💗</div>
+      <button onclick="goToInvite()">Okay 😌</button>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" id="slide2">
+    <div class="card">
+      <h1>🌸 You Are Invited 🌸</h1>
+      <h2>Vision Board Night</h2>
+
+      <p>
+        A cozy, creative evening of intention-setting,
+        dreaming big, and visualizing your future ✨
+      </p>
+
+      <p><strong>📅 Date:</strong> 27th December 2026</p>
+      <p><strong>⏰ Time:</strong> 6:30 PM IST / 8:00 AM (GMT-5)</p>
+      <p><strong>📍 Location:</strong> Online</p>
+
+      <p style="margin-top: 25px;">
+        Bring your dreams, your goals, and your imagination 💫
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function goToInvite() {
+      slide1.classList.remove("active");
+      slideAnyway.classList.remove("active");
+      slide2.classList.add("active");
+    }
+
+    function showAnyway() {
+      slide1.classList.remove("active");
+      slideAnyway.classList.add("active");
+    }
+
+    // 🌸 Floating cute elements
+    const floaties = document.getElementById("floaties");
+    const icons = ["✨", "💗", "🌸", "⭐", "💫"];
+
+    for (let i = 0; i < 45; i++) {
+      const el = document.createElement("div");
+      el.className = "float";
+      el.innerText = icons[Math.floor(Math.random() * icons.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = 14 + Math.random() * 22 + "px";
+      el.style.animationDuration = 8 + Math.random() * 10 + "s";
+      el.style.opacity = Math.random();
+      floaties.appendChild(el);
+    }
+  </script>
+
+</body>
+</html>
